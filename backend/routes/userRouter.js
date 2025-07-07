@@ -8,13 +8,14 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const JWT_SECRET = process.env.JWT_SECRET;
-const SALT_ROUNDS = process.env.SALT_ROUNDS || 10;
+const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS) || 10;
 
 const router = express.Router();
 
 
 router.post('/signup', async (req, res) => {
-  const { username, email, password } = req.body;
+  try {
+    const { username, email, password } = req.body;
 
   if(!username || !email || !password) {
     return res.status(400).json({ message: 'All fields are required' });
@@ -34,12 +35,17 @@ router.post('/signup', async (req, res) => {
       user: newUser, 
       token: token
     });
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error', error: error.message });
+  }
+  
 });
 
 
 router.post('/signin', async (req, res) => {
-  const { email, password } = req.body;
-  const user = await User.findOne({ email });
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
 
   if(!user) {
     return res.status(404).json({ message: 'User not found' });
@@ -57,6 +63,9 @@ router.post('/signin', async (req, res) => {
     user: user, 
     token: token 
   });
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error', error: error.message });
+  }
 });
 
 
