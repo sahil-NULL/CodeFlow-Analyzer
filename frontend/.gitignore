@@ -1,24 +1,47 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
+# dependencies
+node_modules/
 
-node_modules
-dist
-dist-ssr
-*.local
+# production
+/dist/
+/build/
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+# misc
 .DS_Store
+.env
+.env.*
+*.local
+*.log
+
+# Vite
+.vite/
+
+# cache
+.cache/
+.parcel-cache/
+.eslintcache
+
+# test coverage
+coverage/
+
+# editor directories and files
+.vscode/
+.idea/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# OS generated files
+Thumbs.db
+Desktop.ini
+
+# backup & temp files
+*.bak
+*.tmp
+*.temp
+*~
+
+# lock files (keep package-lock.json and yarn.lock for consistency)
+# yarn.lock
+# package-lock.json
