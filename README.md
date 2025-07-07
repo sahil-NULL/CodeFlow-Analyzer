@@ -6,7 +6,7 @@ A full-stack web application to analyze, visualize, and manage code dependencies
 
 ## 🚀 Deployed Project
 
-[View the live app here (placeholder)](https://code-flow-analyzer.vercel.app/)
+[View the live app here (CodeFlow Analyzer)](https://code-flow-analyzer.vercel.app/)
 
 ---
 
