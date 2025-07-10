@@ -80,7 +80,7 @@ router.put('/getGraph', userAuthentication, async (req, res) => {
     });
 
     if (commitRes.data[0].sha === repo.commitHash) {
-      return res.status(200).json({ graph: repo.graph, message: 'No new commits' });
+      return res.status(200).json({ graph: repo.graph, name: repo.name, message: 'No new commits' });
       //  implement redis caching to get graphs from cache for un updated repo
     }
 
@@ -91,7 +91,7 @@ router.put('/getGraph', userAuthentication, async (req, res) => {
 
     const updatedRepo = await Repo.findByIdAndUpdate(req.query.repoId, { graph: graph }, { new: true })
 
-    res.status(200).json({ graph: updatedRepo.graph, message: 'Graph updated successfully' });
+    res.status(200).json({ graph: updatedRepo.graph, name: updatedRepo.name, message: 'Graph updated successfully' });
 
     safeRemove(cloneDir)
       .then(() => console.log(`Cleaned up ${cloneDir}`))
